@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8FAFC">
+
+    <!-- Top Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0D9488"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Healing Progress"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Timeline since surgery"
+            android:textColor="#CCFBF1"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- Scrollable Timeline Area -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="24dp"
+        android:paddingBottom="80dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Timeline Line (Empty state stub) -->
+            <View
+                android:id="@+id/timelineLine"
+                android:layout_width="2dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="31dp"
+                android:background="#E2E8F0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- ================= SURGERY ITEM (DEFAULT EMPTY STATE) ================= -->
+
+            <!-- Gray Dot -->
+            <View
+                android:id="@+id/dotSurgery"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_timeline_dot_gray"
+                app:layout_constraintTop_toTopOf="@id/timelineLine"
+                app:layout_constraintStart_toStartOf="@id/timelineLine"
+                app:layout_constraintEnd_toEndOf="@id/timelineLine" />
+
+            <!-- Surgery Card -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/bg_progress_card_gray"
+                android:orientation="vertical"
+                android:padding="20dp"
+                app:layout_constraintStart_toEndOf="@id/dotSurgery"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/dotSurgery"
+                app:layout_constraintBottom_toBottomOf="@id/dotSurgery">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Surgery"
+                    android:textColor="#94A3B8"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Unknown"
+                    android:textColor="#CBD5E1"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

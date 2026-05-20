@@ -113,7 +113,7 @@
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_camera"
+                        android:src="@drawable/ic_launcher_foreground"
                         app:tint="#009689" />
                 </com.google.android.material.card.MaterialCardView>
 
