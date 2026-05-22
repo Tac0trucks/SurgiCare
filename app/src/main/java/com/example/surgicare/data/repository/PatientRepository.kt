@@ -16,15 +16,16 @@ class PatientRepository(context: Context) {
 
     fun registerPatient(patient: Patient): Boolean {
         return try {
-            // Mapping Domain Model -> Data Model
-            val entity = PatientEntity(name = patient.fullName, age = patient.age)
-
-            // 2. Now prefManager is resolved and will work
-            prefManager.savePatientName(entity.name)
-
-            // You can add more save lines here as you build out the PreferenceManager
-            // prefManager.saveAge(entity.age)
-
+            // In a local app, prefManager is our "Data Model" orchestrator
+            prefManager.savePatientProfile(
+                patient.fullName,
+                patient.age,
+                patient.sex,
+                patient.surgeryType,
+                patient.surgeryDate,
+                patient.hospital,
+                patient.medicalHistory
+            )
             true
         } catch (e: Exception) {
             false

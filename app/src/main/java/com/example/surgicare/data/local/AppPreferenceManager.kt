@@ -22,4 +22,7 @@ class AppPreferenceManager(context: Context) {
 
     fun isProfileComplete(): Boolean = sharedPrefs.getBoolean("PROFILE_COMPLETE", false)
     fun getPatientName(): String? = sharedPrefs.getString("NAME", null)
+    fun saveRole(role: Role) {
+
+    }
 }
