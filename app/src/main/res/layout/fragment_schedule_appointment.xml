@@ -87,7 +87,7 @@
                         <ImageView
                             android:layout_width="28dp"
                             android:layout_height="28dp"
-                            android:src="@drawable/ic_launcher_foreground"
+                            android:src="@drawable/headset"
                             app:tint="@color/content_consultation_card"
                             android:layout_marginBottom="8dp" />
 
@@ -126,7 +126,7 @@
                         <ImageView
                             android:layout_width="28dp"
                             android:layout_height="28dp"
-                            android:src="@drawable/ic_launcher_foreground"
+                            android:src="@drawable/pharmacy"
                             app:tint="@color/content_consultation_card"
                             android:layout_marginBottom="8dp" />
 
