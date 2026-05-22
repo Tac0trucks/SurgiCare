@@ -40,13 +40,29 @@ class PatientRepository(context: Context) {
 
     fun getPatientProfile(): Patient {
         val name = prefManager.getPatientName() ?: "Valued Patient"
-        // Convert Entity (Storage) back to Patient (Model)
-        return Patient(fullName = name, age = 0, surgeryType = "Laparoscopic")
+        val age = prefManager.getPatientAge()
+        val sex = prefManager.getPatientSex() ?: ""
+        val surgeryType = prefManager.getPatientSurgery() ?: "Laparoscopic"
+        val surgeryDate = prefManager.getPatientDate() ?: ""
+        val hospital = prefManager.getPatientHospital() ?: ""
+        val history = prefManager.getPatientHistory() ?: ""
+        
+        return Patient(
+            fullName = name, 
+            age = age, 
+            sex = sex,
+            surgeryType = surgeryType,
+            surgeryDate = surgeryDate,
+            hospital = hospital,
+            medicalHistory = history
+        )
     }
 
-    fun saveAssessment(result: Any) {
-
+    fun clearData() {
+        prefManager.clearAll()
     }
+
+
     fun getStreak(medName: String): Int {
         return prefManager.getMedicationStreak(medName)
     }

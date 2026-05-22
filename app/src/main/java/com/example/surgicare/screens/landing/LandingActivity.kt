@@ -34,6 +34,6 @@ class LandingActivity : AppCompatActivity(), LandingContract.View {
     }
 
     override fun startDoctorFlow() {
-        // Implementation for doctor flow
+        startActivity(Intent(this, com.example.surgicare.screens.doctor.DoctorMainActivity::class.java))
     }
 }

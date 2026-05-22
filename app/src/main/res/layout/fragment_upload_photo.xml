@@ -88,51 +88,70 @@
                 android:lineSpacingExtra="4dp"
                 android:layout_marginBottom="32dp" />
 
-            <!-- Photo Upload Area -->
-            <LinearLayout
+            <FrameLayout
                 android:id="@+id/uploadArea"
                 android:layout_width="match_parent"
                 android:layout_height="320dp"
                 android:background="@drawable/bg_dashed_border"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:clickable="true"
                 android:focusable="true">
 
-                <!-- Circular Icon Container -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    app:cardCornerRadius="32dp"
-                    app:cardElevation="2dp"
-                    app:strokeWidth="0dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    android:layout_marginBottom="16dp">
+                <ImageView
+                    android:id="@+id/ivPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
 
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/camera"
-                        app:tint="#009689" />
-                </com.google.android.material.card.MaterialCardView>
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/uploadPrompt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tap to Take Photo"
-                    android:textColor="#1D293D"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="4dp" />
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="#80000000"
+                    android:padding="16dp"
+                    android:backgroundTint="#00000000">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="or select from gallery"
-                    android:textColor="#94A3B8"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                    <!-- Circular Icon Container -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iconContainer"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        app:cardCornerRadius="32dp"
+                        app:cardElevation="2dp"
+                        app:strokeWidth="0dp"
+                        app:cardBackgroundColor="#FFFFFF"
+                        android:layout_marginBottom="16dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/camera"
+                            app:tint="#009689" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvUploadTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to Take Photo"
+                        android:textColor="#1D293D"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/tvUploadSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="or select from gallery"
+                        android:textColor="#94A3B8"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </FrameLayout>
 
         </LinearLayout>
     </ScrollView>

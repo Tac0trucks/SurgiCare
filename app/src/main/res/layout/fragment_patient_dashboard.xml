@@ -55,6 +55,7 @@
 
                 <!-- Profile Circle -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardProfileImage"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_alignParentEnd="true"
@@ -510,6 +511,7 @@
 
                 <!-- Educational Tips Card -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardEducation"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="6dp"

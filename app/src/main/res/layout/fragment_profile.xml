@@ -41,6 +41,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_circle_teal">
                 <TextView
+                    android:id="@+id/tvAvatarInitials"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -51,6 +52,7 @@
             </FrameLayout>
 
             <TextView
+                android:id="@+id/tvProfileName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -78,6 +80,7 @@
                     android:textAllCaps="true"/>
 
                 <TextView
+                    android:id="@+id/tvSurgeryType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -101,6 +104,7 @@
                     android:textAllCaps="true"/>
 
                 <TextView
+                    android:id="@+id/tvSurgeryDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -110,6 +114,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"

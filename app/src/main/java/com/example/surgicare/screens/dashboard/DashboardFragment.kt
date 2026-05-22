@@ -33,6 +33,9 @@ class DashboardFragment : Fragment(R.layout.fragment_patient_dashboard), Dashboa
         val cardProgress = view.findViewById<View>(R.id.cardHealingProgress)
         val cardMeds = view.findViewById<View>(R.id.cardMedications)
         val cardAppointments = view.findViewById<View>(R.id.cardAppointment)
+        val cardProfile = view.findViewById<View>(R.id.cardProfileImage)
+        val cardEducation = view.findViewById<View>(R.id.cardEducation)
+
         cardAssessment.setOnClickListener {
             // Jump to the Assessment Flow
             navigateToSymptomCheck()
@@ -49,6 +52,18 @@ class DashboardFragment : Fragment(R.layout.fragment_patient_dashboard), Dashboa
             parentFragmentManager.beginTransaction()
                 .replace(R.id.nav_host_fragment, AppointmentFragment())
                 .addToBackStack(null) // This allows the user to click the "Back" button to return to the Dashboard
+                .commit()
+        }
+        cardProfile?.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment, com.example.surgicare.screens.profile.ProfileFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+        cardEducation?.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment, com.example.surgicare.screens.education.EducationFragment())
+                .addToBackStack(null)
                 .commit()
         }
     }

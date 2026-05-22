@@ -26,6 +26,16 @@ class AppPreferenceManager(context: Context) {
 
     fun isProfileComplete(): Boolean = sharedPrefs.getBoolean("PROFILE_COMPLETE", false)
     fun getPatientName(): String? = sharedPrefs.getString("NAME", null)
+    fun getPatientAge(): Int = sharedPrefs.getInt("AGE", 0)
+    fun getPatientSex(): String? = sharedPrefs.getString("SEX", null)
+    fun getPatientSurgery(): String? = sharedPrefs.getString("SURGERY", null)
+    fun getPatientDate(): String? = sharedPrefs.getString("DATE", null)
+    fun getPatientHospital(): String? = sharedPrefs.getString("HOSPITAL", null)
+    fun getPatientHistory(): String? = sharedPrefs.getString("HISTORY", null)
+
+    fun clearAll() {
+        sharedPrefs.edit().clear().apply()
+    }
     fun saveRole(role: Role) {
 
     }

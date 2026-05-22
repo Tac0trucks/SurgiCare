@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home -> loadFragment(DashboardFragment())
                 R.id.nav_progress -> loadFragment(ProgressFragment())
                 R.id.nav_meds -> loadFragment(MedsFragment())
-                R.id.nav_profile -> { /* Load ProfileFragment */ true }
+                R.id.nav_profile -> loadFragment(com.example.surgicare.screens.profile.ProfileFragment())
                 else -> false
             }
         }

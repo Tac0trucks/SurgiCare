@@ -25,6 +25,10 @@ class SymptomCheckFragment : Fragment(R.layout.fragment_symptom_check), Assessme
         super.onViewCreated(view, savedInstanceState)
         presenter = AssessmentPresenter(this, PatientRepository(requireContext()))
 
+        arguments?.getString("photoUri")?.let { uriString ->
+            presenter.setPhoto(android.net.Uri.parse(uriString))
+        }
+
         setupSymptomCards(view)
 
         view.findViewById<MaterialButton>(R.id.btnSubmit).setOnClickListener {
