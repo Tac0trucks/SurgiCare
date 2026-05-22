@@ -43,6 +43,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id = "@+id/tvWelcomeName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Patient"
@@ -124,6 +125,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
+                        android:id = "@+id/btnStartAssessment"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:layout_alignParentEnd="true"

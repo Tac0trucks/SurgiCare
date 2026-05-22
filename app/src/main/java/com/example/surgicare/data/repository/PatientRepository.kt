@@ -36,4 +36,10 @@ class PatientRepository(context: Context) {
     fun isProfileComplete(): Boolean {
         return prefManager.getPatientName() != null
     }
+
+    fun getPatientProfile(): Patient {
+        val name = prefManager.getPatientName() ?: "Valued Patient"
+        // Convert Entity (Storage) back to Patient (Model)
+        return Patient(fullName = name, age = 0, surgeryType = "Laparoscopic")
+    }
 }
