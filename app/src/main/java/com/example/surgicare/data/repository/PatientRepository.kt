@@ -42,4 +42,8 @@ class PatientRepository(context: Context) {
         // Convert Entity (Storage) back to Patient (Model)
         return Patient(fullName = name, age = 0, surgeryType = "Laparoscopic")
     }
+
+    fun saveAssessment(result: Any) {
+
+    }
 }

@@ -9,5 +9,6 @@ enum class CheckupStatus(val colorHex: String) {
 data class CheckupResult(
     val status: CheckupStatus,
     val score: Double,
+    val colorHex: String,
     val instructions: List<String>
 )

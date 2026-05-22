@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.surgicare.R
 import com.example.surgicare.data.repository.PatientRepository
 import com.example.surgicare.models.Patient
+import com.example.surgicare.screens.assessment.UploadPhotoFragment
 
 class DashboardFragment : Fragment(R.layout.fragment_patient_dashboard), DashboardContract.View {
 
@@ -37,6 +38,11 @@ class DashboardFragment : Fragment(R.layout.fragment_patient_dashboard), Dashboa
     }
 
     override fun navigateToSymptomCheck() {
-        // Fragment transaction to move to UploadPhotoFragment
+
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment, UploadPhotoFragment())
+                .addToBackStack(null)
+                .commit()
+
     }
 }
