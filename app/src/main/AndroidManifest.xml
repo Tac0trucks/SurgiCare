@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.surgicare">
-
-    <!-- PERMISSIONS MUST BE HERE (OUTSIDE APPLICATION) -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -15,29 +10,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+        android:theme="@style/Theme.SurgiCare"
         tools:targetApi="31">
-
-        <!-- Entry Point -->
         <activity
-            android:name=".screens.landing.LandingActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Registration -->
-        <activity
-            android:name=".screens.registration.PatientRegisterActivity"
-            android:exported="false" />
-
-        <!-- Main Portal -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-
     </application>
 
 </manifest>
