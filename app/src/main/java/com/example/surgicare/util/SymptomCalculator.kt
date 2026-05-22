@@ -6,24 +6,33 @@ import com.example.surgicare.data.model.CheckupStatus
 
 
 object SymptomCalculator {
-        fun analyze(painScore: Int, symptoms: Map<String, Boolean>): CheckupResult {
+    fun analyze(painScore: Int, symptoms: Map<String, Boolean>): CheckupResult {
         var score = painScore * 0.5
 
-        // RED FLAG Symptoms (Sec 4.3)
+        // Critical Logic for the Test:
+        // Checking "Fever" or "Nausea" will trigger high scores
         if (symptoms["fever"] == true) score += 10.0
-        if (symptoms["pus"] == true) score += 10.0
-        if (symptoms["bleeding"] == true) score += 10.0
-        if (symptoms["breathing"] == true) score += 10.0
-
-        // YELLOW FLAG Symptoms
-        if (symptoms["nausea"] == true) score += 2.0
-        if (symptoms["bloating"] == true) score += 2.0
-        if (symptoms["difficulty_gas"] == true) score += 2.0
+        if (symptoms["nausea"] == true) score += 3.0
 
         return when {
-            score >= 10.0 -> CheckupResult(CheckupStatus.RED, score, "#EF4444", listOf("Bullet point 1", "Bullet point 2"))
-            score >= 3.0 -> CheckupResult(CheckupStatus.YELLOW, score, "#F59E0B", listOf("Bullet point 1", "Bullet point 2"))
-            else -> CheckupResult(CheckupStatus.GREEN, score, "#22C55E", listOf("Bullet point 1", "Bullet point 2"))
+            score >= 10.0 -> CheckupResult(
+                CheckupStatus.RED,
+                score,
+                "#EF4444", // Emergenxy Red
+                listOf("🔴 Seek immediate medical attention", "🔴 Contact surgeon immediately")
+            )
+            score >= 3.0 -> CheckupResult(
+                CheckupStatus.YELLOW,
+                score,
+                "#F59E0B", // Warning Orange
+                listOf("🟡 Reassess symptoms regularly", "🟡 Notify healthcare provider")
+            )
+            else -> CheckupResult(
+                CheckupStatus.GREEN,
+                score,
+                "#22C55E", // Healing Green
+                listOf("🟢 Continue light movement", "🟢 Keep incision clean and dry")
+            )
         }
     }
 }

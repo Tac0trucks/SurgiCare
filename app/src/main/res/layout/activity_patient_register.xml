@@ -237,15 +237,20 @@
                     app:boxBackgroundColor="#FFFFFF"
                     app:boxStrokeColor="#E2E8F0"
                     android:layout_marginBottom="16dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id = "@+id/etDate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="date"
-                        android:textSize="14sp" />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Hospital -->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="@={viewModel.selectedDate}"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:inputType="none" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

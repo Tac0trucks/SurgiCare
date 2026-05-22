@@ -43,12 +43,25 @@ class PatientRegisterActivity : AppCompatActivity(), RegisterContract.View {
     }
 
     private fun setupDatePicker() {
-        val etDate = findViewById<TextInputEditText>(R.id.etDate)
-        etDate.setOnClickListener {
-            val c = Calendar.getInstance()
-            DatePickerDialog(this, { _, year, month, day ->
-                etDate.setText("$year-${month + 1}-$day")
-            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show()
+        val etSurgeryDate = findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.etDate)
+
+        etSurgeryDate.setOnClickListener {
+            val calendar = java.util.Calendar.getInstance()
+            val year = calendar.get(java.util.Calendar.YEAR)
+            val month = calendar.get(java.util.Calendar.MONTH)
+            val day = calendar.get(java.util.Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = android.app.DatePickerDialog(
+                this,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    // Format: YYYY-MM-DD
+                    val formattedDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
+                    etSurgeryDate.setText(formattedDate)
+                },
+                year, month, day
+            )
+
+            datePickerDialog.show()
         }
     }
 
