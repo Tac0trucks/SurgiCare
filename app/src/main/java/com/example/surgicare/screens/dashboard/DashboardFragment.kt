@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.surgicare.MainActivity
 import com.example.surgicare.R
 import com.example.surgicare.data.repository.PatientRepository
 import com.example.surgicare.models.Patient
@@ -27,6 +28,22 @@ class DashboardFragment : Fragment(R.layout.fragment_patient_dashboard), Dashboa
         }
 
         presenter.loadDashboardData()
+        val cardAssessment = view.findViewById<View>(R.id.cardDailyAssessment)
+        val cardProgress = view.findViewById<View>(R.id.cardHealingProgress)
+        val cardMeds = view.findViewById<View>(R.id.cardMedications)
+
+        cardAssessment.setOnClickListener {
+            // Jump to the Assessment Flow
+            navigateToSymptomCheck()
+        }
+        cardProgress.setOnClickListener {
+            // This looks for the MainActivity and calls our new helper
+            (activity as? MainActivity)?.navigateToTab(R.id.nav_progress)
+        }
+
+        cardMeds.setOnClickListener {
+            (activity as? MainActivity)?.navigateToTab(R.id.nav_meds)
+        }
     }
 
     override fun displayPatientInfo(patient: Patient) {

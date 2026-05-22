@@ -151,11 +151,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="Daily Reminders"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 android:textColor="#1E293B"
-                android:layout_marginBottom="16dp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <!-- Reminder 1: Photo -->
             <com.google.android.material.card.MaterialCardView
@@ -165,27 +165,27 @@
                 app:cardBackgroundColor="#F0F9FF"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="#E0F2FE">
+                app:strokeColor="#E0F2FE"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:layout_marginEnd="16dp"
                         android:src="@drawable/ic_launcher_foreground"
-                        app:tint="#0284C7"
-                        android:layout_marginEnd="16dp" />
+                        app:tint="#0284C7" />
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
@@ -199,10 +199,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="Helps track your healing progress."
                             android:textColor="#64748B"
-                            android:textSize="12sp"
-                            android:layout_marginTop="2dp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -215,27 +215,27 @@
                 app:cardBackgroundColor="#FAF5FF"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
-                app:strokeWidth="1dp"
-                app:strokeColor="#F3E8FF">
+                app:strokeColor="#F3E8FF"
+                app:strokeWidth="1dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
+                    android:padding="16dp">
 
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:layout_marginEnd="16dp"
                         android:src="@drawable/ic_launcher_foreground"
-                        app:tint="#9333EA"
-                        android:layout_marginEnd="16dp" />
+                        app:tint="#9333EA" />
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
@@ -249,10 +249,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="Don't break your streak!"
                             android:textColor="#64748B"
-                            android:textSize="12sp"
-                            android:layout_marginTop="2dp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -261,26 +261,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="Quick Access"
-                android:textSize="18sp"
-                android:textStyle="bold"
                 android:textColor="#1E293B"
-                android:layout_marginBottom="16dp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <!-- Row 1 of Grid -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginBottom="12dp"
                 android:baselineAligned="false"
-                android:layout_marginBottom="12dp">
+                android:orientation="horizontal">
 
                 <!-- Daily Assessment Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
@@ -288,6 +288,7 @@
                     app:strokeWidth="1dp">
 
                     <LinearLayout
+                        android:id="@+id/cardDailyAssessment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -296,11 +297,12 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:layout_marginBottom="12dp"
                             app:cardBackgroundColor="#EFF6FF"
                             app:cardCornerRadius="20dp"
                             app:cardElevation="0dp"
-                            app:strokeWidth="0dp"
-                            android:layout_marginBottom="12dp">
+                            app:strokeWidth="0dp">
+
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
@@ -320,10 +322,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="Photo &amp; Symptoms"
                             android:textColor="#64748B"
-                            android:textSize="12sp"
-                            android:layout_marginTop="2dp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -331,8 +333,8 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginStart="6dp"
+                    android:layout_weight="1"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
@@ -340,6 +342,7 @@
                     app:strokeWidth="1dp">
 
                     <LinearLayout
+                        android:id = "@+id/cardHealingProgress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -348,11 +351,12 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:layout_marginBottom="12dp"
                             app:cardBackgroundColor="#ECFDF5"
                             app:cardCornerRadius="20dp"
                             app:cardElevation="0dp"
-                            app:strokeWidth="0dp"
-                            android:layout_marginBottom="12dp">
+                            app:strokeWidth="0dp">
+
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
@@ -372,10 +376,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="View timeline"
                             android:textColor="#64748B"
-                            android:textSize="12sp"
-                            android:layout_marginTop="2dp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -384,15 +388,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false">
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
                 <!-- Medications Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
@@ -400,6 +404,7 @@
                     app:strokeWidth="1dp">
 
                     <LinearLayout
+                        android:id="@+id/cardMedications"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -408,11 +413,12 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:layout_marginBottom="12dp"
                             app:cardBackgroundColor="#FAF5FF"
                             app:cardCornerRadius="20dp"
                             app:cardElevation="0dp"
-                            app:strokeWidth="0dp"
-                            android:layout_marginBottom="12dp">
+                            app:strokeWidth="0dp">
+
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
@@ -432,10 +438,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="Reminders &amp; Streaks"
                             android:textColor="#64748B"
-                            android:textSize="12sp"
-                            android:layout_marginTop="2dp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -443,8 +449,8 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginStart="6dp"
+                    android:layout_weight="1"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
@@ -460,11 +466,12 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:layout_marginBottom="12dp"
                             app:cardBackgroundColor="#FFF7ED"
                             app:cardCornerRadius="20dp"
                             app:cardElevation="0dp"
-                            app:strokeWidth="0dp"
-                            android:layout_marginBottom="12dp">
+                            app:strokeWidth="0dp">
+
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
@@ -484,10 +491,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="Schedule visit"
                             android:textColor="#64748B"
-                            android:textSize="12sp"
-                            android:layout_marginTop="2dp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -496,16 +503,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
                 android:baselineAligned="false"
-                android:layout_marginTop="12dp">
+                android:orientation="horizontal">
 
                 <!-- Educational Tips Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="0dp"
@@ -521,11 +528,11 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:layout_marginBottom="12dp"
                             app:cardBackgroundColor="#FFE4E6"
                             app:cardCornerRadius="20dp"
                             app:cardElevation="0dp"
-                            app:strokeWidth="0dp"
-                            android:layout_marginBottom="12dp">
+                            app:strokeWidth="0dp">
 
                             <!-- You'll need an ic_book.xml vector in your drawable folder -->
                             <ImageView
@@ -547,10 +554,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
                             android:text="Care guides"
                             android:textColor="#64748B"
-                            android:textSize="12sp"
-                            android:layout_marginTop="2dp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -558,8 +565,8 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginStart="6dp" />
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1" />
             </LinearLayout>
 
         </LinearLayout>
