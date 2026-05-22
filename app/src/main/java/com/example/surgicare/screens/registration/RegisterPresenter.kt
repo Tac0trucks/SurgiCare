@@ -4,39 +4,28 @@ import com.example.surgicare.data.repository.PatientRepository
 import com.example.surgicare.models.Patient
 
 class RegisterPresenter(
-    private var view: RegisterContract.View?,
+    private val view: RegisterContract.View,
     private val repository: PatientRepository
 ) : RegisterContract.Presenter {
 
-    override fun register(
+    override fun validateAndRegister(
         name: String, age: String, sex: String,
         surgery: String, date: String, hospital: String, history: String
     ) {
-        if (name.isBlank() || age.isBlank()) {
-            view?.onRegistrationError("Please fill in required fields.")
+        // Simple Validation logic
+        if (name.isEmpty() || age.isEmpty() || surgery.isEmpty() || hospital.isEmpty()) {
+            view.showRegistrationError("Please fill in all mandatory fields")
             return
         }
 
-        view?.showLoading()
-
-        val patientModel = Patient(
-            fullName = name,
-            age = age.toInt(),
-            sex = sex,
-            surgeryType = surgery,
-            surgeryDate = date,
-            hospital = hospital,
-            medicalHistory = history
-        )
-
-        val success = repository.registerPatient(patientModel)
+        // Map UI data to Model and Save
+        val patient = Patient(name, age.toInt(), sex, surgery, date, hospital, history)
+        val success = repository.registerPatient(patient)
 
         if (success) {
-            view?.onRegistrationSuccess()
+            view.onRegistrationSuccess()
         } else {
-            view?.onRegistrationError("Database saving failed")
+            view.showRegistrationError("Saving failed. Please try again.")
         }
     }
-
-    fun detachView() { view = null }
 }
