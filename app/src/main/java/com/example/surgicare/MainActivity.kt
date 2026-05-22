@@ -7,6 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.surgicare.screens.dashboard.DashboardFragment
+import com.example.surgicare.screens.medications.MedsFragment
+import com.example.surgicare.screens.progress.ProgressFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -22,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> loadFragment(DashboardFragment())
-                R.id.nav_progress -> { /* Load ProgressFragment */ true }
-                R.id.nav_meds -> { /* Load MedsFragment */ true }
+                R.id.nav_progress -> loadFragment(ProgressFragment())
+                R.id.nav_meds -> loadFragment(MedsFragment())
                 R.id.nav_profile -> { /* Load ProfileFragment */ true }
                 else -> false
             }
@@ -35,6 +37,11 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.nav_host_fragment, fragment)
             .commit()
         return true
+    }
+
+    fun navigateToTab(itemId: Int) {
+        val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        navView.selectedItemId = itemId
     }
 }
 

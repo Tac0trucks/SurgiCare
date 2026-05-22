@@ -23,7 +23,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_launcher_foreground"
+            android:src="@drawable/nursicare"
             app:tint="#009689"
             android:contentDescription="SurgiCare Logo" />
     </com.google.android.material.card.MaterialCardView>
@@ -88,7 +88,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_launcher_foreground"
+                        android:src="@drawable/patient"
                         app:tint="#009689"
                         android:contentDescription="Patient Icon" />
                 </com.google.android.material.card.MaterialCardView>
@@ -154,7 +154,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_launcher_foreground"
+                        android:src="@drawable/doctor"
                         app:tint="#2563EB"
                         android:contentDescription="Doctor Icon" />
                 </com.google.android.material.card.MaterialCardView>
