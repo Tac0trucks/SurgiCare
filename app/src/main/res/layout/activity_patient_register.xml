@@ -105,12 +105,13 @@
                     android:layout_marginBottom="16dp">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id = "@+id/etFullName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Jane Doe"
+                        android:textColor="#1D293D"
                         android:textColorHint="#94A3B8"
-                        android:textSize="14sp"
-                        android:textColor="#1D293D" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Age & Sex Row -->
@@ -147,6 +148,7 @@
                             app:boxBackgroundColor="#FFFFFF"
                             app:boxStrokeColor="#E2E8F0">
                             <com.google.android.material.textfield.TextInputEditText
+                                android:id = "@+id/etAge"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
@@ -180,6 +182,7 @@
                             app:boxBackgroundColor="#FFFFFF"
                             app:boxStrokeColor="#E2E8F0">
                             <AutoCompleteTextView
+                                android:id = "@+id/actvSex"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -208,6 +211,7 @@
                     app:boxStrokeColor="#E2E8F0"
                     android:layout_marginBottom="16dp">
                     <AutoCompleteTextView
+                        android:id = "@+id/actvSurgeryType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
@@ -233,14 +237,20 @@
                     app:boxBackgroundColor="#FFFFFF"
                     app:boxStrokeColor="#E2E8F0"
                     android:layout_marginBottom="16dp">
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="date"
-                        android:textSize="14sp" />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Hospital -->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="@={viewModel.selectedDate}"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:inputType="none" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -260,6 +270,7 @@
                     app:boxStrokeColor="#E2E8F0"
                     android:layout_marginBottom="16dp">
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id = "@+id/etHospital"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="General Hospital"
@@ -285,13 +296,15 @@
                     app:boxBackgroundColor="#FFFFFF"
                     app:boxStrokeColor="#E2E8F0"
                     android:layout_marginBottom="24dp">
+
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etHistory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="top|start"
                         android:hint="Diabetes, Hypertension, etc."
                         android:inputType="textMultiLine"
                         android:lines="3"
-                        android:gravity="top|start"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 

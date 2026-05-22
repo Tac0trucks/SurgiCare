@@ -115,6 +115,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id = "@+id/tvStreakAmoxicillin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0 🔥"
@@ -231,6 +232,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id = "@+id/tvStreakIbuprofen"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0 🔥"
