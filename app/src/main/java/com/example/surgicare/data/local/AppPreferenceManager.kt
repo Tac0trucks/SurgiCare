@@ -1,6 +1,7 @@
 package com.example.surgicare.data.local
 
 import android.content.Context
+import com.example.surgicare.models.Appointment
 import com.example.surgicare.data.model.CheckupResult
 import com.example.surgicare.models.Role
 import com.google.gson.Gson
@@ -55,5 +56,14 @@ class AppPreferenceManager(context: Context) {
         // Convert String -> List
         val type = object : TypeToken<List<CheckupResult>>() {}.type
         return gson.fromJson(jsonString, type)
+    }
+    fun saveAppointment(appt: Appointment) {
+        val json = gson.toJson(appt)
+        sharedPrefs.edit().putString("UPCOMING_APPT", json).apply()
+    }
+
+    fun getUpcomingAppointment(): Appointment? {
+        val json = sharedPrefs.getString("UPCOMING_APPT", null) ?: return null
+        return gson.fromJson(json, Appointment::class.java)
     }
 }

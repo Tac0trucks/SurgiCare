@@ -7,5 +7,5 @@ data class Patient(
     val surgeryType: String = "",
     val surgeryDate: String = "",
     val hospital: String = "",
-    val medicalHistory: String = ""
+    val medicalHistory: String = "None"
 )
