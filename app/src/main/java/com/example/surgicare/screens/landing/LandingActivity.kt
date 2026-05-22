@@ -1,11 +1,12 @@
+
+package com.example.surgicare.screens.landing
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.surgicare.R
 import com.example.surgicare.data.repository.PatientRepository
-import com.example.surgicare.screens.landing.LandingContract
-import com.example.surgicare.screens.landing.LandingPresenter
 import com.example.surgicare.screens.registration.PatientRegisterActivity
 
 class LandingActivity : AppCompatActivity(), LandingContract.View {
