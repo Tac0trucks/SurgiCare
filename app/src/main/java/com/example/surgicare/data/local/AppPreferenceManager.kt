@@ -25,4 +25,15 @@ class AppPreferenceManager(context: Context) {
     fun saveRole(role: Role) {
 
     }
+    fun saveMedicationStreak(medName: String, count: Int) {
+        sharedPrefs.edit().putInt("STREAK_$medName", count).apply()
+    }
+
+    fun getMedicationStreak(medName: String): Int = sharedPrefs.getInt("STREAK_$medName", 0)
+
+    fun saveLastTakenDate(medName: String, date: String) {
+        sharedPrefs.edit().putString("DATE_$medName", date).apply()
+    }
+
+    fun getLastTakenDate(medName: String): String? = sharedPrefs.getString("DATE_$medName", null)
 }

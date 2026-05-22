@@ -46,4 +46,19 @@ class PatientRepository(context: Context) {
     fun saveAssessment(result: Any) {
 
     }
+    fun getStreak(medName: String): Int {
+        return prefManager.getMedicationStreak(medName)
+    }
+
+    fun saveStreak(medName: String, count: Int) {
+        prefManager.saveMedicationStreak(medName, count)
+    }
+
+    fun getLastTakenDate(medName: String): String? {
+        return prefManager.getLastTakenDate(medName)
+    }
+
+    fun saveLastTakenDate(medName: String, date: String) {
+        prefManager.saveLastTakenDate(medName, date)
+    }
 }
