@@ -1,12 +1,15 @@
 package com.example.surgicare.data.local
 
 import android.content.Context
+import com.example.surgicare.data.model.CheckupResult
 import com.example.surgicare.models.Role
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 
 class AppPreferenceManager(context: Context) {
     private val sharedPrefs = context.getSharedPreferences("SurgiCare_Prefs", Context.MODE_PRIVATE)
-
+    private val gson = Gson()
     fun savePatientProfile(name: String, age: Int, sex: String, surgery: String, date: String, hospital: String, history: String) {
         sharedPrefs.edit().apply {
             putString("NAME", name)
@@ -36,4 +39,21 @@ class AppPreferenceManager(context: Context) {
     }
 
     fun getLastTakenDate(medName: String): String? = sharedPrefs.getString("DATE_$medName", null)
+    fun addAssessmentToHistory(newRecord: CheckupResult) {
+        val currentHistory = getHistoryList().toMutableList()
+        currentHistory.add(newRecord)
+
+        // Convert List -> String
+        val jsonString = gson.toJson(currentHistory)
+        sharedPrefs.edit().putString("HISTORY_LIST", jsonString).apply()
+    }
+
+    // 2. Logic to RETRIEVE the full history list
+    fun getHistoryList(): List<CheckupResult> {
+        val jsonString = sharedPrefs.getString("HISTORY_LIST", null) ?: return emptyList()
+
+        // Convert String -> List
+        val type = object : TypeToken<List<CheckupResult>>() {}.type
+        return gson.fromJson(jsonString, type)
+    }
 }

@@ -2,6 +2,7 @@ package com.example.surgicare.data.repository
 
 import android.content.Context
 import com.example.surgicare.data.local.AppPreferenceManager
+import com.example.surgicare.data.model.CheckupResult
 import com.example.surgicare.data.model.PatientEntity
 import com.example.surgicare.models.Patient
 import com.example.surgicare.models.Role
@@ -60,5 +61,12 @@ class PatientRepository(context: Context) {
 
     fun saveLastTakenDate(medName: String, date: String) {
         prefManager.saveLastTakenDate(medName, date)
+    }
+    fun saveAssessment(result: CheckupResult) {
+        prefManager.addAssessmentToHistory(result)
+    }
+
+    fun getHealingHistory(): List<CheckupResult> {
+        return prefManager.getHistoryList()
     }
 }
