@@ -17,7 +17,8 @@ class MedsPresenter(
         val statusList = medsList.map { medName ->
             val streak = repository.getStreak(medName)
             val isTakenToday = repository.getLastTakenDate(medName) == today
-            MedicationStatus(medName, streak, isTakenToday)
+            val reminderTime = repository.getReminderTime(medName)
+            MedicationStatus(medName, streak, isTakenToday, reminderTime)
         }
         view.displayMedications(statusList)
     }
@@ -33,7 +34,7 @@ class MedsPresenter(
         loadMedicationStatus()
     }
 
-    override fun addMedication(medName: String) {
+    override fun addMedication(medName: String, hour: Int, minute: Int) {
         val name = medName.trim()
         if (name.isNotEmpty()) {
             val medsList = repository.getMedicationsList()
@@ -41,8 +42,12 @@ class MedsPresenter(
                 view.showSuccessMessage("$name is already in your list.")
             } else {
                 repository.addMedication(name)
+                
+                val timeStr = String.format("%02d:%02d", hour, minute)
+                repository.saveReminderTime(name, timeStr)
+                
                 loadMedicationStatus()
-                view.showSuccessMessage("Added $name")
+                view.showSuccessMessage("Added $name with reminder at $timeStr")
             }
         }
     }

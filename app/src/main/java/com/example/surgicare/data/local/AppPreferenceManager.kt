@@ -50,6 +50,12 @@ class AppPreferenceManager(context: Context) {
     }
 
     fun getLastTakenDate(medName: String): String? = sharedPrefs.getString("DATE_$medName", null)
+
+    fun saveReminderTime(medName: String, timeStr: String) {
+        sharedPrefs.edit().putString("TIME_$medName", timeStr).apply()
+    }
+
+    fun getReminderTime(medName: String): String? = sharedPrefs.getString("TIME_$medName", null)
     fun addAssessmentToHistory(newRecord: CheckupResult) {
         val currentHistory = getHistoryList().toMutableList()
         currentHistory.add(newRecord)

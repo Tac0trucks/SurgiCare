@@ -78,6 +78,14 @@ class PatientRepository(context: Context) {
     fun saveLastTakenDate(medName: String, date: String) {
         prefManager.saveLastTakenDate(medName, date)
     }
+
+    fun saveReminderTime(medName: String, timeStr: String) {
+        prefManager.saveReminderTime(medName, timeStr)
+    }
+
+    fun getReminderTime(medName: String): String? {
+        return prefManager.getReminderTime(medName)
+    }
     fun saveAssessment(result: CheckupResult) {
         prefManager.addAssessmentToHistory(result)
     }

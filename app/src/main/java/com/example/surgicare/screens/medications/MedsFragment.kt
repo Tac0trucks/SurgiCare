@@ -11,6 +11,11 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.app.TimePickerDialog
+import android.Manifest
+import android.os.Build
+import androidx.activity.result.contract.ActivityResultContracts
+import java.util.Calendar
 import com.example.surgicare.data.repository.PatientRepository
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -20,10 +25,23 @@ class MedsFragment : Fragment(R.layout.fragment_medications), MedsContract.View 
 
     private lateinit var adapter: MedsAdapter
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (!isGranted) {
+            Toast.makeText(requireContext(), "Reminders won't work without notification permissions", Toast.LENGTH_LONG).show()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         presenter = MedsPresenter(this, PatientRepository(requireContext()))
+        NotificationHelper.createNotificationChannel(requireContext())
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
 
         val rv = view.findViewById<RecyclerView>(R.id.rvMedications)
         rv.layoutManager = LinearLayoutManager(requireContext())
@@ -46,10 +64,10 @@ class MedsFragment : Fragment(R.layout.fragment_medications), MedsContract.View 
         AlertDialog.Builder(requireContext())
             .setTitle("Add Medication")
             .setView(input)
-            .setPositiveButton("Add") { dialog, _ ->
+            .setPositiveButton("Next") { dialog, _ ->
                 val name = input.text.toString()
                 if (name.isNotBlank()) {
-                    presenter.addMedication(name)
+                    showTimePickerDialog(name)
                 }
                 dialog.dismiss()
             }
@@ -57,6 +75,19 @@ class MedsFragment : Fragment(R.layout.fragment_medications), MedsContract.View 
                 dialog.cancel()
             }
             .show()
+    }
+
+    private fun showTimePickerDialog(medName: String) {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        TimePickerDialog(requireContext(), { _, selectedHour, selectedMinute ->
+            presenter.addMedication(medName, selectedHour, selectedMinute)
+            NotificationHelper.scheduleMedicationReminder(requireContext(), medName, selectedHour, selectedMinute)
+        }, hour, minute, false).apply {
+            setTitle("Select Reminder Time")
+        }.show()
     }
 
     override fun displayMedications(medications: List<MedicationStatus>) {

@@ -9,6 +9,6 @@ interface MedsContract {
     interface Presenter {
         fun loadMedicationStatus()
         fun markAsTaken(medName: String)
-        fun addMedication(medName: String)
+        fun addMedication(medName: String, hour: Int, minute: Int)
     }
 }

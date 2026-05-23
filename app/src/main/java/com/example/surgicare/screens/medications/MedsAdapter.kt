@@ -15,6 +15,7 @@ class MedsAdapter(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvMedName: TextView = view.findViewById(R.id.tvMedName)
+        val tvMedDesc: TextView = view.findViewById(R.id.tvMedDesc)
         val tvStreakCount: TextView = view.findViewById(R.id.tvStreakCount)
         val btnStreak: AppCompatButton = view.findViewById(R.id.btnStreak)
     }
@@ -28,6 +29,12 @@ class MedsAdapter(
         val med = medications[position]
         holder.tvMedName.text = med.name
         holder.tvStreakCount.text = "${med.streak} 🔥"
+        
+        if (med.reminderTime != null) {
+            holder.tvMedDesc.text = "Reminder: ${med.reminderTime}"
+        } else {
+            holder.tvMedDesc.text = "No reminder set"
+        }
 
         if (med.isTakenToday) {
             holder.btnStreak.isEnabled = false
