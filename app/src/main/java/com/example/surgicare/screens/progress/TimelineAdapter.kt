@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.surgicare.R
 import com.example.surgicare.data.model.CheckupResult
 
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
-class TimelineAdapter(private val history: List<CheckupResult>) :
+class TimelineAdapter(private val history: List<CheckupResult>, private val surgeryDateStr: String) :
     RecyclerView.Adapter<TimelineAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,6 +35,20 @@ class TimelineAdapter(private val history: List<CheckupResult>) :
         holder.tvStatus.setTextColor(Color.parseColor(record.colorHex))
         // Set dot color to match status
         holder.dot.setBackgroundColor(Color.parseColor(record.colorHex))
+
+        try {
+            val parser = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+            val date = parser.parse(surgeryDateStr)
+            if (date != null) {
+                val calendar = Calendar.getInstance()
+                calendar.time = date
+                calendar.add(Calendar.DAY_OF_YEAR, position)
+                val formatter = SimpleDateFormat("MMM dd", Locale.getDefault())
+                holder.tvDate.text = formatter.format(calendar.time)
+            }
+        } catch (e: Exception) {
+            holder.tvDate.text = "Day ${position + 1}"
+        }
     }
 
     override fun getItemCount() = history.size

@@ -13,15 +13,13 @@ class MedsPresenter(
     private val today = dateFormat.format(Date())
 
     override fun loadMedicationStatus() {
-        // Handle Amoxicillin
-        val amoxStreak = repository.getStreak("Amoxicillin")
-        val amoxTaken = repository.getLastTakenDate("Amoxicillin") == today
-        view.updateStreakUI("Amoxicillin", amoxStreak, amoxTaken)
-
-        // Handle Ibuprofen
-        val ibuStreak = repository.getStreak("Ibuprofen")
-        val ibuTaken = repository.getLastTakenDate("Ibuprofen") == today
-        view.updateStreakUI("Ibuprofen", ibuStreak, ibuTaken)
+        val medsList = repository.getMedicationsList()
+        val statusList = medsList.map { medName ->
+            val streak = repository.getStreak(medName)
+            val isTakenToday = repository.getLastTakenDate(medName) == today
+            MedicationStatus(medName, streak, isTakenToday)
+        }
+        view.displayMedications(statusList)
     }
 
     override fun markAsTaken(medName: String) {
@@ -31,7 +29,21 @@ class MedsPresenter(
         repository.saveStreak(medName, newStreak)
         repository.saveLastTakenDate(medName, today)
 
-        view.updateStreakUI(medName, newStreak, true)
         view.showSuccessMessage("Great job! $medName streak is now $newStreak 🔥")
+        loadMedicationStatus()
+    }
+
+    override fun addMedication(medName: String) {
+        val name = medName.trim()
+        if (name.isNotEmpty()) {
+            val medsList = repository.getMedicationsList()
+            if (medsList.any { it.equals(name, ignoreCase = true) }) {
+                view.showSuccessMessage("$name is already in your list.")
+            } else {
+                repository.addMedication(name)
+                loadMedicationStatus()
+                view.showSuccessMessage("Added $name")
+            }
+        }
     }
 }

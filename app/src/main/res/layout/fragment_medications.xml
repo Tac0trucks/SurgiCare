@@ -31,257 +31,29 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:padding="24dp">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMedications"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="24dp"
+            android:paddingBottom="100dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddMedication"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Card 1: Amoxicillin -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_med_card"
-                android:elevation="2dp"
-                android:layout_marginBottom="16dp"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <!-- Top Half: Med Details -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal">
-
-                    <!-- Purple Pill Icon -->
-                    <FrameLayout
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_circle_purple">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/pill"
-                            app:tint="#9333EA" />
-                    </FrameLayout>
-
-                    <!-- Text Info -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Amoxicillin"
-                            android:textColor="#1E293B"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="500mg • 3x/day for 7 days"
-                            android:textColor="#62748E"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <!-- Streak Info -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="STREAK"
-                            android:textColor="#94A3B8"
-                            android:textSize="10sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id = "@+id/tvStreakAmoxicillin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0 🔥"
-                            android:textColor="#FF6900"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Bottom Half: Action Button -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_med_inner_card"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Mark as taken today?"
-                        android:textColor="#475569"
-                        android:textSize="14sp" />
-
-                    <!-- The +1 Streak Button with proper press states -->
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnStreakAmoxicillin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_btn_streak"
-                        android:minWidth="0dp"
-                        android:minHeight="0dp"
-                        android:paddingHorizontal="16dp"
-                        android:paddingVertical="8dp"
-                        android:text="+1 Streak"
-                        android:textAllCaps="false"
-                        android:textColor="#0F766E"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Card 2: Ibuprofen -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_med_card"
-                android:elevation="2dp"
-                android:layout_marginBottom="16dp"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <!-- Top Half -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="16dp"
-                    android:orientation="horizontal">
-
-                    <!-- Purple Pill Icon -->
-                    <FrameLayout
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_circle_purple">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/pill"
-                            app:tint="#9333EA" />
-                    </FrameLayout>
-
-                    <!-- Text Info -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Ibuprofen"
-                            android:textColor="#1E293B"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="400mg • 2x/day for 5 days"
-                            android:textColor="#62748E"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <!-- Streak Info -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="STREAK"
-                            android:textColor="#94A3B8"
-                            android:textSize="10sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id = "@+id/tvStreakIbuprofen"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0 🔥"
-                            android:textColor="#FF6900"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Bottom Half -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_med_inner_card"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Mark as taken today?"
-                        android:textColor="#475569"
-                        android:textSize="14sp" />
-
-                    <!-- The +1 Streak Button -->
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnStreakIbuprofen"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_btn_streak"
-                        android:minWidth="0dp"
-                        android:minHeight="0dp"
-                        android:paddingHorizontal="16dp"
-                        android:paddingVertical="8dp"
-                        android:text="+1 Streak"
-                        android:textAllCaps="false"
-                        android:textColor="#0F766E"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- Bottom Spacer for BottomNav overlap -->
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="80dp" />
-
-        </LinearLayout>
-    </ScrollView>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="80dp"
+            android:src="@android:drawable/ic_input_add"
+            app:backgroundTint="#0D9488"
+            app:tint="#FFFFFF"
+            android:contentDescription="Add Medication" />
+    </RelativeLayout>
 </LinearLayout>

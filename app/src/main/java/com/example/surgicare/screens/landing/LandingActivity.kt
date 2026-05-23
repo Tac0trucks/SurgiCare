@@ -18,6 +18,7 @@ class LandingActivity : AppCompatActivity(), LandingContract.View {
 
         // Repository implementation omitted for brevity but should use PreferenceManager
         presenter = LandingPresenter(this, PatientRepository(this))
+        presenter.checkSession()
 
         // Find views from activity_landing_page.xml
         findViewById<View>(R.id.btnPatient).setOnClickListener {
@@ -35,5 +36,10 @@ class LandingActivity : AppCompatActivity(), LandingContract.View {
 
     override fun startDoctorFlow() {
         startActivity(Intent(this, com.example.surgicare.screens.doctor.DoctorMainActivity::class.java))
+    }
+
+    override fun startMainActivity() {
+        startActivity(Intent(this, com.example.surgicare.MainActivity::class.java))
+        finish()
     }
 }

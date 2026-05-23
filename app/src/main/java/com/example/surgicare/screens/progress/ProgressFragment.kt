@@ -21,6 +21,8 @@ class ProgressFragment : Fragment(R.layout.fragment_progress) {
 
         val rv = view.findViewById<RecyclerView>(R.id.rvTimeline)
         rv.layoutManager = LinearLayoutManager(requireContext())
-        rv.adapter = TimelineAdapter(history)
+        
+        val surgeryDate = repository.getPatientProfile().surgeryDate
+        rv.adapter = TimelineAdapter(history, surgeryDate)
     }
 }

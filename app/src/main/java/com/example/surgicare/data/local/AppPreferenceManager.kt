@@ -59,6 +59,25 @@ class AppPreferenceManager(context: Context) {
         sharedPrefs.edit().putString("HISTORY_LIST", jsonString).apply()
     }
 
+    fun getMedicationsList(): List<String> {
+        val jsonString = sharedPrefs.getString("MEDICATIONS_LIST", null)
+        if (jsonString == null) {
+            val defaultList = listOf("Amoxicillin", "Ibuprofen")
+            sharedPrefs.edit().putString("MEDICATIONS_LIST", gson.toJson(defaultList)).apply()
+            return defaultList
+        }
+        val type = object : TypeToken<List<String>>() {}.type
+        return gson.fromJson(jsonString, type)
+    }
+
+    fun saveMedication(medName: String) {
+        val currentList = getMedicationsList().toMutableList()
+        if (!currentList.contains(medName)) {
+            currentList.add(medName)
+            sharedPrefs.edit().putString("MEDICATIONS_LIST", gson.toJson(currentList)).apply()
+        }
+    }
+
     // 2. Logic to RETRIEVE the full history list
     fun getHistoryList(): List<CheckupResult> {
         val jsonString = sharedPrefs.getString("HISTORY_LIST", null) ?: return emptyList()

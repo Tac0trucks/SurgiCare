@@ -85,4 +85,12 @@ class PatientRepository(context: Context) {
     fun getHealingHistory(): List<CheckupResult> {
         return prefManager.getHistoryList()
     }
+
+    fun getMedicationsList(): List<String> {
+        return prefManager.getMedicationsList()
+    }
+
+    fun addMedication(name: String) {
+        prefManager.saveMedication(name)
+    }
 }

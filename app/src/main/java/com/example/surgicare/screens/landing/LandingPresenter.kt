@@ -19,4 +19,10 @@ class LandingPresenter(
             view.startDoctorFlow()
         }
     }
+
+    override fun checkSession() {
+        if (repository.isProfileComplete()) {
+            view.startMainActivity()
+        }
+    }
 }

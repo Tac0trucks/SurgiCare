@@ -52,6 +52,5 @@ class ProfileFragment : Fragment(R.layout.fragment_profile), ProfileContract.Vie
         val intent = Intent(requireContext(), LandingActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
-        requireActivity().finish()
     }
 }

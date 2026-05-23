@@ -14,6 +14,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        val repository = com.example.surgicare.data.repository.PatientRepository(this)
+        if (!repository.isProfileComplete()) {
+            startActivity(android.content.Intent(this, com.example.surgicare.screens.landing.LandingActivity::class.java))
+            finish()
+            return
+        }
+        
         setContentView(R.layout.activity_main)
 
         val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
