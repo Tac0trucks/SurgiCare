@@ -14,15 +14,20 @@ class ProgressFragment : Fragment(R.layout.fragment_progress) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        try {
+            android.widget.Toast.makeText(requireContext(), "Progress Fragment Loaded!", android.widget.Toast.LENGTH_SHORT).show()
+            /*
+            val repository = PatientRepository(requireContext())
+            val history = repository.getHealingHistory() ?: mutableListOf()
 
-        val repository = PatientRepository(requireContext())
-        var history = repository.getHealingHistory()
-        // FOR TESTING ONLY: If history is empty, let's make some fake cards
-
-        val rv = view.findViewById<RecyclerView>(R.id.rvTimeline)
-        rv.layoutManager = LinearLayoutManager(requireContext())
-        
-        val surgeryDate = repository.getPatientProfile().surgeryDate
-        rv.adapter = TimelineAdapter(history, surgeryDate)
+            val rv = view.findViewById<RecyclerView>(R.id.rvTimeline)
+            rv.layoutManager = LinearLayoutManager(requireContext())
+            
+            val surgeryDate = repository.getPatientProfile().surgeryDate
+            rv.adapter = TimelineAdapter(history, surgeryDate)
+            */
+        } catch (e: Exception) {
+            android.widget.Toast.makeText(requireContext(), "Error loading progress: ${e.message}", android.widget.Toast.LENGTH_LONG).show()
+        }
     }
 }

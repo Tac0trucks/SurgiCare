@@ -4,11 +4,14 @@ interface MedsContract {
     interface View {
         fun displayMedications(medications: List<MedicationStatus>)
         fun showSuccessMessage(message: String)
+        fun showCongratulations(message: String)
     }
 
     interface Presenter {
         fun loadMedicationStatus()
         fun markAsTaken(medName: String)
-        fun addMedication(medName: String, hour: Int, minute: Int)
+        fun addMedication(medName: String, dosage: String, hour: Int, minute: Int)
+        fun finishCourse(medName: String)
+        fun deleteMedication(medName: String)
     }
 }

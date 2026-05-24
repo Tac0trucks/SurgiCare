@@ -57,14 +57,48 @@
                 android:textColor="#62748E"
                 android:textSize="12sp"
                 android:visibility="visible" />
+                
+            <TextView
+                android:id="@+id/tvMedDosage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Dosage: 1 Tab"
+                android:textColor="#62748E"
+                android:textSize="12sp"
+                android:visibility="visible" />
         </LinearLayout>
 
-        <!-- Streak Info -->
+        <!-- Actions and Streak Info -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+                
+                <ImageView
+                    android:id="@+id/btnFinishCourse"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_agenda"
+                    android:contentDescription="Finish Course"
+                    android:layout_marginEnd="16dp"
+                    app:tint="#64748B"/>
+                    
+                <ImageView
+                    android:id="@+id/btnDeleteMed"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_delete"
+                    android:contentDescription="Delete Medication"
+                    app:tint="#EF4444"/>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -113,7 +147,7 @@
             android:paddingVertical="8dp"
             android:text="+1 Streak"
             android:textAllCaps="false"
-            android:textColor="#0F766E"
+            android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>

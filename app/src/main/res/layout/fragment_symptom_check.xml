@@ -373,6 +373,30 @@
                     </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- 8. Others -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxStrokeColor="#009689"
+                    app:boxBackgroundColor="#FFFFFF"
+                    android:hint="Others (Specify)">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etOthers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:minLines="2"
+                        android:textColor="#1D293D"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

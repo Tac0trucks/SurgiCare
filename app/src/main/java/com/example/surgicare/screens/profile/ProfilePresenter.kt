@@ -14,7 +14,7 @@ class ProfilePresenter(
     }
 
     override fun logout() {
-        repository.clearData()
+        repository.setLoggedIn(false)
         view.navigateToLogin()
     }
 }

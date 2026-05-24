@@ -10,5 +10,6 @@ data class CheckupResult(
     val status: CheckupStatus,
     val score: Double,
     val colorHex: String,
-    val instructions: List<String>
+    val instructions: List<String>,
+    val photoUri: String? = null
 )

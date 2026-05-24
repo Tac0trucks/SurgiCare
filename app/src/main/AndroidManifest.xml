@@ -29,6 +29,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".screens.doctor.DoctorLoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.landing.PatientLoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- Mock Doctor Main Activity -->
+        <activity
             android:name=".screens.doctor.DoctorMainActivity"
             android:exported="false" />
         <activity

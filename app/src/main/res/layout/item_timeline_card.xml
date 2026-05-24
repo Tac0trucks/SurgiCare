@@ -71,6 +71,16 @@
                 android:text="🟢 Normal Healing"
                 android:textStyle="bold"
                 android:textSize="14sp" />
+
+            <!-- The Wound Photo (Dynamic) -->
+            <ImageView
+                android:id="@+id/ivWoundPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="12dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                android:background="#F1F5F9" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

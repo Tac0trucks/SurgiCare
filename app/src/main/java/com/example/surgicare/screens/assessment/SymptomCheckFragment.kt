@@ -80,8 +80,15 @@ class SymptomCheckFragment : Fragment(R.layout.fragment_symptom_check), Assessme
         builder.setTitle(status)
         builder.setMessage(advice)
         builder.setPositiveButton("OK") { _, _ ->
-            // Clear backstack and return Home
-            parentFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            if (status.equals("RED", ignoreCase = true)) {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.nav_host_fragment, com.example.surgicare.screens.appointment.AppointmentFragment())
+                    .addToBackStack(null)
+                    .commit()
+            } else {
+                // Clear backstack and return Home
+                parentFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            }
         }
 
         val dialog = builder.create()

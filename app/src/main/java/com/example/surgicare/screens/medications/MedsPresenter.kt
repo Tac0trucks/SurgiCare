@@ -18,7 +18,8 @@ class MedsPresenter(
             val streak = repository.getStreak(medName)
             val isTakenToday = repository.getLastTakenDate(medName) == today
             val reminderTime = repository.getReminderTime(medName)
-            MedicationStatus(medName, streak, isTakenToday, reminderTime)
+            val dosage = repository.getDosage(medName)
+            MedicationStatus(medName, streak, isTakenToday, reminderTime, dosage)
         }
         view.displayMedications(statusList)
     }
@@ -34,7 +35,7 @@ class MedsPresenter(
         loadMedicationStatus()
     }
 
-    override fun addMedication(medName: String, hour: Int, minute: Int) {
+    override fun addMedication(medName: String, dosage: String, hour: Int, minute: Int) {
         val name = medName.trim()
         if (name.isNotEmpty()) {
             val medsList = repository.getMedicationsList()
@@ -45,10 +46,23 @@ class MedsPresenter(
                 
                 val timeStr = String.format("%02d:%02d", hour, minute)
                 repository.saveReminderTime(name, timeStr)
+                repository.saveDosage(name, dosage)
                 
                 loadMedicationStatus()
                 view.showSuccessMessage("Added $name with reminder at $timeStr")
             }
         }
+    }
+
+    override fun finishCourse(medName: String) {
+        repository.removeMedication(medName)
+        view.showCongratulations("Congratulations! You have finished your course for $medName.")
+        loadMedicationStatus()
+    }
+
+    override fun deleteMedication(medName: String) {
+        repository.removeMedication(medName)
+        view.showSuccessMessage("Deleted $medName")
+        loadMedicationStatus()
     }
 }

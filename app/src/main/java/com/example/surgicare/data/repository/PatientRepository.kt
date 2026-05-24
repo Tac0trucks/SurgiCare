@@ -58,6 +58,14 @@ class PatientRepository(context: Context) {
         )
     }
 
+    fun setLoggedIn(isLoggedIn: Boolean) {
+        prefManager.setLoggedIn(isLoggedIn)
+    }
+
+    fun isLoggedIn(): Boolean {
+        return prefManager.isLoggedIn()
+    }
+
     fun clearData() {
         prefManager.clearAll()
     }
@@ -86,6 +94,23 @@ class PatientRepository(context: Context) {
     fun getReminderTime(medName: String): String? {
         return prefManager.getReminderTime(medName)
     }
+
+    fun saveDosage(medName: String, dosage: String) {
+        prefManager.saveDosage(medName, dosage)
+    }
+
+    fun getDosage(medName: String): String? {
+        return prefManager.getDosage(medName)
+    }
+
+    fun saveLastPhotoUploadDate(date: String) {
+        prefManager.saveLastPhotoUploadDate(date)
+    }
+    
+    fun getLastPhotoUploadDate(): String? {
+        return prefManager.getLastPhotoUploadDate()
+    }
+
     fun saveAssessment(result: CheckupResult) {
         prefManager.addAssessmentToHistory(result)
     }
@@ -100,5 +125,9 @@ class PatientRepository(context: Context) {
 
     fun addMedication(name: String) {
         prefManager.saveMedication(name)
+    }
+
+    fun removeMedication(name: String) {
+        prefManager.removeMedication(name)
     }
 }

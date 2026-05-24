@@ -21,6 +21,7 @@ class TimelineAdapter(private val history: List<CheckupResult>, private val surg
         val tvDate: TextView = view.findViewById(R.id.tvDate)
         val tvStatus: TextView = view.findViewById(R.id.tvStatus)
         val dot: View = view.findViewById(R.id.viewStatusDot)
+        val ivPhoto: android.widget.ImageView = view.findViewById(R.id.ivWoundPhoto)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,25 +30,37 @@ class TimelineAdapter(private val history: List<CheckupResult>, private val surg
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val record = history[position]
-        holder.tvDay.text = "Day ${position + 1}"
-        holder.tvStatus.text = record.status.name
-        holder.tvStatus.setTextColor(Color.parseColor(record.colorHex))
-        // Set dot color to match status
-        holder.dot.setBackgroundColor(Color.parseColor(record.colorHex))
-
         try {
-            val parser = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
-            val date = parser.parse(surgeryDateStr)
-            if (date != null) {
-                val calendar = Calendar.getInstance()
-                calendar.time = date
-                calendar.add(Calendar.DAY_OF_YEAR, position)
-                val formatter = SimpleDateFormat("MMM dd", Locale.getDefault())
-                holder.tvDate.text = formatter.format(calendar.time)
+            val record = history[position]
+            holder.tvDay.text = "Day ${position + 1}"
+            holder.tvStatus.text = record.status.name
+            holder.tvStatus.setTextColor(Color.parseColor(record.colorHex))
+            // Set dot color to match status
+            holder.dot.setBackgroundColor(Color.parseColor(record.colorHex))
+            
+            if (!record.photoUri.isNullOrEmpty()) {
+                holder.ivPhoto.visibility = View.VISIBLE
+                holder.ivPhoto.setImageURI(android.net.Uri.parse(record.photoUri))
+            } else {
+                holder.ivPhoto.visibility = View.VISIBLE
+                holder.ivPhoto.setImageResource(R.drawable.ic_image_placeholder)
+            }
+
+            try {
+                val parser = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+                val date = parser.parse(surgeryDateStr)
+                if (date != null) {
+                    val calendar = Calendar.getInstance()
+                    calendar.time = date
+                    calendar.add(Calendar.DAY_OF_YEAR, position)
+                    val formatter = SimpleDateFormat("MMM dd", Locale.getDefault())
+                    holder.tvDate.text = formatter.format(calendar.time)
+                }
+            } catch (e: Exception) {
+                holder.tvDate.text = "Day ${position + 1}"
             }
         } catch (e: Exception) {
-            holder.tvDate.text = "Day ${position + 1}"
+            e.printStackTrace()
         }
     }
 

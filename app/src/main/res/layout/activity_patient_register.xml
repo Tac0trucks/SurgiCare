@@ -108,7 +108,6 @@
                         android:id = "@+id/etFullName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Jane Doe"
                         android:textColor="#1D293D"
                         android:textColorHint="#94A3B8"
                         android:textSize="14sp" />
@@ -152,7 +151,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="number"
-                                android:hint="45"
                                 android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
@@ -246,7 +244,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:text="@={viewModel.selectedDate}"
                     android:focusable="false"
                     android:clickable="true"
                     android:inputType="none" />
@@ -273,7 +270,6 @@
                         android:id = "@+id/etHospital"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="General Hospital"
                         android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -302,7 +298,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="top|start"
-                        android:hint="Diabetes, Hypertension, etc."
                         android:inputType="textMultiLine"
                         android:lines="3"
                         android:textSize="14sp" />

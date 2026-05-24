@@ -10,18 +10,22 @@ class LandingPresenter(
 
     override fun onRoleSelected(isPatient: Boolean) {
         val role = if (isPatient) Role.PATIENT else Role.DOCTOR
-
         repository.saveUserRole(role)
 
         if (isPatient) {
-            view.startPatientFlow()
+            if (repository.isProfileComplete()) {
+                repository.setLoggedIn(true)
+                view.startMainActivity()
+            } else {
+                view.startPatientFlow()
+            }
         } else {
             view.startDoctorFlow()
         }
     }
 
     override fun checkSession() {
-        if (repository.isProfileComplete()) {
+        if (repository.isLoggedIn() && repository.isProfileComplete()) {
             view.startMainActivity()
         }
     }

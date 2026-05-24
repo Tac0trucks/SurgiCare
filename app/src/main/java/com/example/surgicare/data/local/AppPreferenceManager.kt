@@ -56,6 +56,25 @@ class AppPreferenceManager(context: Context) {
     }
 
     fun getReminderTime(medName: String): String? = sharedPrefs.getString("TIME_$medName", null)
+
+    fun saveDosage(medName: String, dosage: String) {
+        sharedPrefs.edit().putString("DOSAGE_$medName", dosage).apply()
+    }
+
+    fun getDosage(medName: String): String? = sharedPrefs.getString("DOSAGE_$medName", null)
+
+    fun saveLastPhotoUploadDate(date: String) {
+        sharedPrefs.edit().putString("LAST_PHOTO_UPLOAD_DATE", date).apply()
+    }
+    
+    fun getLastPhotoUploadDate(): String? = sharedPrefs.getString("LAST_PHOTO_UPLOAD_DATE", null)
+
+    fun setLoggedIn(isLoggedIn: Boolean) {
+        sharedPrefs.edit().putBoolean("IS_LOGGED_IN", isLoggedIn).apply()
+    }
+    
+    fun isLoggedIn(): Boolean = sharedPrefs.getBoolean("IS_LOGGED_IN", false)
+
     fun addAssessmentToHistory(newRecord: CheckupResult) {
         val currentHistory = getHistoryList().toMutableList()
         currentHistory.add(newRecord)
@@ -84,13 +103,25 @@ class AppPreferenceManager(context: Context) {
         }
     }
 
+    fun removeMedication(medName: String) {
+        val currentList = getMedicationsList().toMutableList()
+        if (currentList.contains(medName)) {
+            currentList.remove(medName)
+            sharedPrefs.edit().putString("MEDICATIONS_LIST", gson.toJson(currentList)).apply()
+        }
+    }
+
     // 2. Logic to RETRIEVE the full history list
     fun getHistoryList(): List<CheckupResult> {
         val jsonString = sharedPrefs.getString("HISTORY_LIST", null) ?: return emptyList()
 
         // Convert String -> List
         val type = object : TypeToken<List<CheckupResult>>() {}.type
-        return gson.fromJson(jsonString, type)
+        return try {
+            gson.fromJson(jsonString, type) ?: emptyList()
+        } catch (e: Exception) {
+            emptyList()
+        }
     }
     fun saveAppointment(appt: Appointment) {
         val json = gson.toJson(appt)

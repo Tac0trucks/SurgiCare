@@ -10,8 +10,11 @@ class AssessmentPresenter(
 
     private val currentCheck = mutableMapOf<String, Boolean>()
     private var currentPain = 1
+    private var photoUriStr: String? = null
 
-    override fun setPhoto(uri: android.net.Uri) { /* Saved in fragment state */ }
+    override fun setPhoto(uri: android.net.Uri) { 
+        photoUriStr = uri.toString()
+    }
 
     override fun toggleSymptom(name: String, isChecked: Boolean) {
         currentCheck[name] = isChecked
@@ -22,10 +25,15 @@ class AssessmentPresenter(
     }
 
     override fun submitAssessment() {
-        val result = SymptomCalculator.analyze(currentPain, currentCheck)
+        val baseResult = SymptomCalculator.analyze(currentPain, currentCheck)
+        val result = baseResult.copy(photoUri = photoUriStr)
 
         // Save to Local History via Repository
         repository.saveAssessment(result)
+        
+        // Lock out photo uploads for the rest of today
+        val today = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(java.util.Date())
+        repository.saveLastPhotoUploadDate(today)
 
         view.showAnalysisResult(
             result.status.name,

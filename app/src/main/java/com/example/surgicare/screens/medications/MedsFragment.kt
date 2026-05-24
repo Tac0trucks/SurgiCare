@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.app.TimePickerDialog
+import android.widget.LinearLayout
 import android.Manifest
 import android.os.Build
 import androidx.activity.result.contract.ActivityResultContracts
@@ -45,9 +46,12 @@ class MedsFragment : Fragment(R.layout.fragment_medications), MedsContract.View 
 
         val rv = view.findViewById<RecyclerView>(R.id.rvMedications)
         rv.layoutManager = LinearLayoutManager(requireContext())
-        adapter = MedsAdapter(emptyList()) { medName ->
-            presenter.markAsTaken(medName)
-        }
+        adapter = MedsAdapter(
+            emptyList(), 
+            onStreakClick = { name -> presenter.markAsTaken(name) },
+            onFinishCourseClick = { name -> presenter.finishCourse(name) },
+            onDeleteClick = { name -> presenter.deleteMedication(name) }
+        )
         rv.adapter = adapter
 
         view.findViewById<FloatingActionButton>(R.id.fabAddMedication).setOnClickListener {
@@ -58,32 +62,52 @@ class MedsFragment : Fragment(R.layout.fragment_medications), MedsContract.View 
     }
 
     private fun showAddMedicationDialog() {
-        val input = EditText(requireContext())
-        input.hint = "Enter medication name"
+        val layout = LinearLayout(requireContext()).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(50, 40, 50, 10)
+        }
+        
+        val nameInput = EditText(requireContext()).apply {
+            hint = "Enter medication name"
+        }
+        
+        val dosageInput = EditText(requireContext()).apply {
+            hint = "Dosage (e.g., 1 Tab)"
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply { setMargins(0, 20, 0, 0) }
+        }
+        
+        layout.addView(nameInput)
+        layout.addView(dosageInput)
         
         AlertDialog.Builder(requireContext())
             .setTitle("Add Medication")
-            .setView(input)
-            .setPositiveButton("Next") { dialog, _ ->
-                val name = input.text.toString()
-                if (name.isNotBlank()) {
-                    showTimePickerDialog(name)
+            .setView(layout)
+            .setPositiveButton("Next") { dialog: android.content.DialogInterface, _: Int ->
+                val name = nameInput.text.toString()
+                val dosage = dosageInput.text.toString()
+                if (name.isNotBlank() && dosage.isNotBlank()) {
+                    showTimePickerDialog(name, dosage)
+                } else {
+                    Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show()
                 }
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton("Cancel") { dialog: android.content.DialogInterface, _: Int ->
                 dialog.cancel()
             }
             .show()
     }
 
-    private fun showTimePickerDialog(medName: String) {
+    private fun showTimePickerDialog(medName: String, dosage: String) {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val minute = calendar.get(Calendar.MINUTE)
 
         TimePickerDialog(requireContext(), { _, selectedHour, selectedMinute ->
-            presenter.addMedication(medName, selectedHour, selectedMinute)
+            presenter.addMedication(medName, dosage, selectedHour, selectedMinute)
             NotificationHelper.scheduleMedicationReminder(requireContext(), medName, selectedHour, selectedMinute)
         }, hour, minute, false).apply {
             setTitle("Select Reminder Time")
@@ -95,6 +119,14 @@ class MedsFragment : Fragment(R.layout.fragment_medications), MedsContract.View 
     }
 
     override fun showSuccessMessage(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showCongratulations(message: String) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("🎉 Congratulations!")
+            .setMessage(message)
+            .setPositiveButton("Awesome") { dialog: android.content.DialogInterface, _: Int -> dialog.dismiss() }
+            .show()
     }
 }

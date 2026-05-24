@@ -4,5 +4,6 @@ data class MedicationStatus(
     val name: String,
     val streak: Int,
     val isTakenToday: Boolean,
-    val reminderTime: String?
+    val reminderTime: String?,
+    val dosage: String?
 )

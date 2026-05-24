@@ -23,6 +23,7 @@ class RegisterPresenter(
         val success = repository.registerPatient(patient)
 
         if (success) {
+            repository.setLoggedIn(true)
             view.onRegistrationSuccess()
         } else {
             view.showRegistrationError("Saving failed. Please try again.")

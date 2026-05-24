@@ -21,8 +21,23 @@ class LandingActivity : AppCompatActivity(), LandingContract.View {
         presenter.checkSession()
 
         // Find views from activity_landing_page.xml
-        findViewById<View>(R.id.btnPatient).setOnClickListener {
-            presenter.onRoleSelected(true)
+        val llPatientOptions = findViewById<View>(R.id.llPatientOptions)
+        val btnPatient = findViewById<View>(R.id.btnPatient)
+        
+        btnPatient.setOnClickListener {
+            if (llPatientOptions.visibility == View.GONE) {
+                llPatientOptions.visibility = View.VISIBLE
+            } else {
+                llPatientOptions.visibility = View.GONE
+            }
+        }
+
+        findViewById<View>(R.id.btnPatientLogin).setOnClickListener {
+            startActivity(Intent(this, PatientLoginActivity::class.java))
+        }
+
+        findViewById<View>(R.id.btnPatientRegister).setOnClickListener {
+            startActivity(Intent(this, PatientRegisterActivity::class.java))
         }
 
         findViewById<View>(R.id.btnDoctor).setOnClickListener {
@@ -35,7 +50,7 @@ class LandingActivity : AppCompatActivity(), LandingContract.View {
     }
 
     override fun startDoctorFlow() {
-        startActivity(Intent(this, com.example.surgicare.screens.doctor.DoctorMainActivity::class.java))
+        startActivity(Intent(this, com.example.surgicare.screens.doctor.DoctorLoginActivity::class.java))
     }
 
     override fun startMainActivity() {

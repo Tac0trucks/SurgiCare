@@ -1,5 +1,6 @@
 package com.example.surgicare.screens.medications
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +11,19 @@ import com.example.surgicare.R
 
 class MedsAdapter(
     private var medications: List<MedicationStatus>,
-    private val onStreakClick: (String) -> Unit
+    private val onStreakClick: (String) -> Unit,
+    private val onFinishCourseClick: (String) -> Unit,
+    private val onDeleteClick: (String) -> Unit
 ) : RecyclerView.Adapter<MedsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvMedName: TextView = view.findViewById(R.id.tvMedName)
         val tvMedDesc: TextView = view.findViewById(R.id.tvMedDesc)
+        val tvMedDosage: TextView = view.findViewById(R.id.tvMedDosage)
         val tvStreakCount: TextView = view.findViewById(R.id.tvStreakCount)
         val btnStreak: AppCompatButton = view.findViewById(R.id.btnStreak)
+        val btnFinishCourse: View = view.findViewById(R.id.btnFinishCourse)
+        val btnDeleteMed: View = view.findViewById(R.id.btnDeleteMed)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,18 +42,33 @@ class MedsAdapter(
             holder.tvMedDesc.text = "No reminder set"
         }
 
+        if (med.dosage != null) {
+            holder.tvMedDosage.text = "Dosage: ${med.dosage}"
+            holder.tvMedDosage.visibility = View.VISIBLE
+        } else {
+            holder.tvMedDosage.visibility = View.GONE
+        }
+
         if (med.isTakenToday) {
             holder.btnStreak.isEnabled = false
             holder.btnStreak.text = "Taken"
-            holder.btnStreak.alpha = 0.5f
+            holder.btnStreak.setBackgroundColor(Color.parseColor("#E2E8F0"))
         } else {
             holder.btnStreak.isEnabled = true
             holder.btnStreak.text = "+1 Streak"
-            holder.btnStreak.alpha = 1.0f
+            holder.btnStreak.setBackgroundColor(Color.parseColor("#009689"))
         }
 
         holder.btnStreak.setOnClickListener {
             onStreakClick(med.name)
+        }
+        
+        holder.btnFinishCourse.setOnClickListener {
+            onFinishCourseClick(med.name)
+        }
+        
+        holder.btnDeleteMed.setOnClickListener {
+            onDeleteClick(med.name)
         }
     }
 

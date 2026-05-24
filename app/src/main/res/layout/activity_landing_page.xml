@@ -71,9 +71,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="24dp"
-                android:gravity="center_vertical">
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/llPatientHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="24dp"
+                    android:gravity="center_vertical">
 
                 <!-- Patient Icon Circle -->
                 <com.google.android.material.card.MaterialCardView
@@ -116,6 +122,37 @@
                         android:textSize="12sp"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
+            </LinearLayout>
+
+            <!-- Hidden Options (Login / Register) -->
+            <LinearLayout
+                android:id="@+id/llPatientOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:paddingHorizontal="24dp"
+                android:paddingBottom="24dp"
+                android:weightSum="2">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPatientLogin"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Login" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPatientRegister"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="Register"
+                    app:backgroundTint="#009689" />
+            </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
