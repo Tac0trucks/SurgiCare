@@ -15,6 +15,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
+        val crashPrefs = getSharedPreferences("crash_prefs", android.content.Context.MODE_PRIVATE)
+        val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
+        Thread.setDefaultUncaughtExceptionHandler { thread, exception ->
+            crashPrefs.edit().putString("crash_log", exception.stackTraceToString()).commit()
+            defaultHandler?.uncaughtException(thread, exception)
+        }
+
+        val crashLog = crashPrefs.getString("crash_log", null)
+        if (crashLog != null) {
+            crashPrefs.edit().remove("crash_log").commit()
+            android.app.AlertDialog.Builder(this)
+                .setTitle("FATAL CRASH CAUGHT")
+                .setMessage(crashLog)
+                .setPositiveButton("OK", null)
+                .show()
+        }
         val repository = com.example.surgicare.data.repository.PatientRepository(this)
         if (!repository.isProfileComplete()) {
             startActivity(android.content.Intent(this, com.example.surgicare.screens.landing.LandingActivity::class.java))

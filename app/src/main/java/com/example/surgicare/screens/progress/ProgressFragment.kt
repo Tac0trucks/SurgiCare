@@ -10,22 +10,33 @@ import com.example.surgicare.data.model.CheckupResult
 import com.example.surgicare.data.model.CheckupStatus
 import com.example.surgicare.data.repository.PatientRepository
 
-class ProgressFragment : Fragment(R.layout.fragment_progress) {
+class ProgressFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: android.view.LayoutInflater,
+        container: android.view.ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return try {
+            inflater.inflate(R.layout.fragment_progress, container, false)
+        } catch (t: Throwable) {
+            val tv = android.widget.TextView(requireContext())
+            tv.text = "CRASH IN FRAGMENT XML: ${t.stackTraceToString()}"
+            tv
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         try {
-            android.widget.Toast.makeText(requireContext(), "Progress Fragment Loaded!", android.widget.Toast.LENGTH_SHORT).show()
-            /*
             val repository = PatientRepository(requireContext())
-            val history = repository.getHealingHistory() ?: mutableListOf()
+            val history = repository.getHealingHistory().reversed()
 
             val rv = view.findViewById<RecyclerView>(R.id.rvTimeline)
             rv.layoutManager = LinearLayoutManager(requireContext())
             
             val surgeryDate = repository.getPatientProfile().surgeryDate
             rv.adapter = TimelineAdapter(history, surgeryDate)
-            */
         } catch (e: Exception) {
             android.widget.Toast.makeText(requireContext(), "Error loading progress: ${e.message}", android.widget.Toast.LENGTH_LONG).show()
         }

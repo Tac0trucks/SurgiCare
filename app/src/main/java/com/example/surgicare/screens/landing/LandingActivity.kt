@@ -21,27 +21,15 @@ class LandingActivity : AppCompatActivity(), LandingContract.View {
         presenter.checkSession()
 
         // Find views from activity_landing_page.xml
-        val llPatientOptions = findViewById<View>(R.id.llPatientOptions)
-        val btnPatient = findViewById<View>(R.id.btnPatient)
-        
-        btnPatient.setOnClickListener {
-            if (llPatientOptions.visibility == View.GONE) {
-                llPatientOptions.visibility = View.VISIBLE
-            } else {
-                llPatientOptions.visibility = View.GONE
-            }
-        }
+        val btnPatientLogin = findViewById<View>(R.id.btnPatientLogin)
+        val btnPatientRegister = findViewById<View>(R.id.btnPatientRegister)
 
-        findViewById<View>(R.id.btnPatientLogin).setOnClickListener {
+        btnPatientLogin.setOnClickListener {
             startActivity(Intent(this, PatientLoginActivity::class.java))
         }
 
-        findViewById<View>(R.id.btnPatientRegister).setOnClickListener {
+        btnPatientRegister.setOnClickListener {
             startActivity(Intent(this, PatientRegisterActivity::class.java))
-        }
-
-        findViewById<View>(R.id.btnDoctor).setOnClickListener {
-            presenter.onRoleSelected(false)
         }
     }
 
